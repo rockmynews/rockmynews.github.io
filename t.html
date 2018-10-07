@@ -3,20 +3,10 @@
 <meta name="viewport" content="width=device-width"/>
 <style>body{margin:0;background:rgba(247,246,246,.58)}.logo{display:block;margin-left:auto;margin-right:auto;max-width:100%;height:auto}.main-box{width:500px;height:350px;border:5px solid #5e5ecb;padding:1em;float:left;font-family:roboto,arial,sans-serif}.main-img-box img{width:80%;display:block;margin:1em auto auto}.main-text-box{font:700 2em arial;text-align:center;display:block;margin-top:1em}.t{float:right;height:250px}.main-img-box-2 img{float:left;width:200px;height:auto;padding-top:1.8em}.main-text-box-2{float:right;font:1.5em 400 Arial;padding-top:1.8em}.wrap{clear:both;float:none;display:none}.content{width:50%;max-width:45em;clear:both;font:400 17px Roboto,Helvetica;line-height:142%;padding:2em;word-spacing:1;margin:1em auto}.headline{text-align:center;font-size:25px;font-family:monospace}pre{display:block;font-family:inherit;white-space:normal;margin:inherit}@media (max-width:62em){.content{width:90%;padding:1em;margin:0}}@media print{.logo{display:none}.content{width:100%;font-family:Helvetica}.headline{font-size:2.5em;font-weight:400}}@font-face{font-family:TondoCorp-Light;src:url(TondoCorp-Light.woff) format('woff');font-weight:400;font-style:normal}</style><meta http-equiv="cache-control" content="max-age=0" />
 <script type="text/javascript">
-if (document.cookie.indexOf("visited=") >= 0) {
-  alert("hello again");
-	var x = document.getElementById("body");
-        x.style.display = "none";
-	
+if (document.cookie.indexOf("seen=") >= 0) {document.getElementById("body").style.display ="none";
 }
 else {
-  // set a new cookie
-  expiry = new Date();
-  expiry.setTime(expiry.getTime()+(10*60*1000)); // Ten minutes
-
-  // Date()'s toGMTSting() method will format the date correctly for a cookie
-  document.cookie = "visited=yes; expires=" + expiry.toGMTString();
-  alert("this is your first time");
+  document.cookie = "seen=yes;
 }
 </script>
 	
