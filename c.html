@@ -1,16 +1,16 @@
 <form name="contact" method="POST" netlify-honeypot="field" netlify>
+  
+    <input name="field" hidden />
+ <p>
+    <label>Name: <br><input type="text" name="name" /></label>   
+</p>
   <p>
-	<input type="text" name="field" hidden/>
-    <label>Your Name: <input type="text" name="name" /></label>   
+    <label>Email: <br><input type="text" name="email" /></label>
   </p>
   <p>
-    <label>Your Email: <input type="email" name="email" /></label>
+    <label>Message: <br><textarea name="message"></textarea></label>
   </p>
   <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-  <div data-netlify-recaptcha></div>
-  <p>
-    <button type="submit">Send</button>
+    <button type=”submit”>Send</button>
   </p>
 </form>
