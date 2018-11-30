@@ -18,7 +18,7 @@
         if (response.items == null) {
             //Sometimes there is a strange thing with the results where it says there are 34 results/4 pages, but when you click through to 3 then there is only 30, so page 4 is invalid now.
             //So if we get to the invalid one, send them back a page.
-            window.location.replace("searchresults.htm?start=" + (start - 10) + "&q=" + query);
+            window.location.replace("search.html?start=" + (start - 10) + "&q=" + query);
             return;
         }
         //Search results load time
