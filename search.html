@@ -33,6 +33,7 @@
             content += "<div class='gs-webResult gs-result'>" +
                 "<table class='gsc-table-result'><tbody><tr>";
             //Thumbnail image
+            var cse_thumbnail;
             if (item.pagemap.cse_thumbnail != null)
                 content += "<td class='gsc-table-cell-thumbnail gsc-thumbnail'><div class='gs-image-box gs-web-image-box gs-web-image-box-portrait'><a class='gs-image' href='" + item.link + "'>" +
                     "<img class='gs-image' class = 'gs-image-box gs-web-image-box gs-web-image-box-portrait' src='" + item.pagemap.cse_thumbnail[0].src + "'></a></td>";
