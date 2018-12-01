@@ -1,14 +1,17 @@
-<form name="contact" method="POST" netlify-honeypot="field" netlify>
+<center><form name="contact" method="POST" netlify-honeypot="field" netlify>
   
     <input name="field" hidden />
  <p>
-    <label>Name: <br><input type="text" name="name" /></label>   
+    <label>Name: <input type="text" name="name" required/></label>   
 </p>
   <p>
-    <label>Phone/Email: <br><input type="text" name="email" /></label>
+    <label>Phone: <input type="text" name="email" required/></label>
   </p>
   <p>
-    <label>Message: <br><textarea name="message"></textarea></label>
+    <label>Phone: <input type="text" name="phone" required/></label>
+  </p>
+  <p>
+    <label>Message: <br><textarea name="message" required></textarea></label>
   </p>
  <div data-netlify-recaptcha></div>
   <p>
@@ -19,3 +22,4 @@
     console.log("The user has already solved the captcha, now you can submit your form.");
 }
 </script>
+</center>
