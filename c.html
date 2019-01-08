@@ -10,7 +10,6 @@
 :-moz-placeholder { /* Firefox 18- */
  text-align:center;
 }</style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
   <body>
   <center><form name="contact" method="POST" netlify id="ccd">
@@ -28,30 +27,9 @@
   <p>
     <label> <textarea name="message" required rows="10" cols="30" placeholder="Message"></textarea></label>
   </p>
-      <div netlify-recaptcha data-callback="recaptchaCallback"></div>
+      <div netlify-recaptcha></div>
   <p>
-    <button type="submit" disabled>Send Message</button>
+    <button type="submit">Send Message</button>
   </p>
-</form></center><script>$("#ccd").submit(function(e) {
-  e.preventDefault();
-
-  var $form = $(this);
-  $.post($form.attr("action"), $form.serialize()).then(function() {
-    alert("Thank you!");
-  });
-    });</script>
-    <button onclick="myFunction()">Try it</button>
-
-<script>
-function myFunction() {
-var x = document.getElementsByClassName("g-recaptcha");
-  var att = document.createAttribute("data-callback");
-  att.value = "recaptchaCallback";
-  x.setAttributeNode(att);
-}
-  
- function recaptchaCallback() {
-    $('#submitBtn').removeAttr('disabled');
-};
-</script>
+</form></center>
   </body></html>
