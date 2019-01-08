@@ -30,7 +30,7 @@
   </p>
       <div netlify-recaptcha data-callback="recaptchaCallback"></div>
   <p>
-    <button type="submit">Send Message</button>
+    <button type="submit" disabled>Send Message</button>
   </p>
 </form></center><script>$("#ccd").submit(function(e) {
   e.preventDefault();
@@ -40,4 +40,18 @@
     alert("Thank you!");
   });
     });</script>
+    <button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+var x = document.getElementsByClassName("g-recaptcha");
+  var att = document.createAttribute("data-callback");
+  att.value = "recaptchaCallback";
+  x.setAttributeNode(att);
+}
+  
+ function recaptchaCallback() {
+    $('#submitBtn').removeAttr('disabled');
+};
+</script>
   </body></html>
