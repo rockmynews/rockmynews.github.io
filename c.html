@@ -31,5 +31,12 @@
   <p>
     <button type="submit">Send Message</button>
   </p>
-</form></center>
+</form></center><script>$("#my-form").submit(function(e) {
+  e.preventDefault();
+
+  var $form = $(this);
+  $.post($form.attr("action"), $form.serialize()).then(function() {
+    alert("Thank you!");
+  });
+    });</script>
   </body></html>
