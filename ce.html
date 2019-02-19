@@ -1,6 +1,9 @@
 <script>
-  if (privacy != yes){
-    alert("no");
+if (document.cookie.indexOf('privacy') > -1 ) {
+    document.write("no");
+  }
+  else{
+    document.write("yes");
   }
   document.cookie = "privacy=yes; expires= Thu, 21 Aug 2020 20:00:00 UTC; "
 
