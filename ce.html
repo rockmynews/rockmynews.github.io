@@ -1,5 +1,5 @@
 <script>
-if (document.cookie.indexOf('privacy') != 0 ) {
+if (document.cookie.indexOf('agree') != 0 ) {
     document.write("<div id = 'cookiescript_injected'
 style = 'bottom: 0px; background-color: rgb(238, 238, 238); z-index: 999999; opacity: 0.95; position: fixed; padding: 15px 0px; width: 100%; left: 0px; font-size: 13px; font-weight: normal; text-align: left; letter-spacing: normal; color: rgb(0, 0, 0); font-family: Arial, sans-serif; box-shadow: rgb(0, 0, 0) 0px 0px 8px; display: block;' > < div id = 'cookiescript_wrapper'
 style = 'margin: 0px 10px; font-size: 13px; font-weight: normal; text-align: center; color: rgb(0, 0, 0); font-family: Arial, sans-serif; line-height: 23px; letter-spacing: normal;' > This website uses cookies to improve user experience.By using our website you consent to all cookies in accordance with our Cookie Policy. & nbsp; & nbsp; < a id = 'cookiescript_readmore'
@@ -8,7 +8,9 @@ style = 'text-decoration: underline; color: rgb(0, 0, 0); cursor: pointer; paddi
   else{
     document.write("yes");
   }
-  document.cookie = "privacy=yes; expires= Thu, 21 Aug 2020 20:00:00 UTC; "
+    function cAgree(){
+  document.cookie = "agree=yes; expires= Thu, 21 Aug 2020 20:00:00 UTC; "
+    }
 
 
 </script>
