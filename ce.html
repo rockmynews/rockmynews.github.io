@@ -1,9 +1,10 @@
 <script>
 if (document.cookie.indexOf('privacy') != 0 ) {
-    document.write("yes");
+    document.write("no");
+    document.write("<div id="cookiescript_injected" style="bottom: 0px; background-color: rgb(238, 238, 238); z-index: 999999; opacity: 0.95; position: fixed; padding: 15px 0px; width: 100%; left: 0px; font-size: 13px; font-weight: normal; text-align: left; letter-spacing: normal; color: rgb(0, 0, 0); font-family: Arial, sans-serif; box-shadow: rgb(0, 0, 0) 0px 0px 8px; display: block;"><div id="cookiescript_wrapper" style="margin: 0px 10px; font-size: 13px; font-weight: normal; text-align: center; color: rgb(0, 0, 0); font-family: Arial, sans-serif; line-height: 23px; letter-spacing: normal;">This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy. &nbsp;&nbsp;<a id="cookiescript_readmore" style="text-decoration: underline; color: rgb(0, 0, 0); cursor: pointer; padding: 0px; margin: 0px; white-space: nowrap; display: inline-block;">Read more</a><div id="cookiescript_accept" style="border-radius: 5px; border: 0px; padding: 6px 10px; font-weight: bold; cursor: pointer; margin: 0px 10px 0px 15px; transition: all 0.25s ease 0s; display: inline; text-shadow: rgb(0, 0, 0) 0px 0px 2px; white-space: nowrap; background-color: rgb(91, 183, 91); color: rgb(255, 255, 255);">I agree</div><div id="cookiescript_reject" style="border-radius: 5px; border: 0px; padding: 6px 10px; font-weight: bold; cursor: pointer; margin: 0px 10px 0px 15px; transition: all 0.25s ease 0s; display: inline; text-shadow: rgb(0, 0, 0) 0px 0px 2px; white-space: nowrap; background-color: rgb(183, 91, 91); color: rgb(255, 255, 255);">I disagree</div><a href="//cookie-script.com" target="_blank" id="cookiescript_link" style="display: block !important; text-decoration: none; color: rgb(0, 0, 0); font-size: 85%; float: right; padding: 0px 20px 0px 0px; letter-spacing: normal; font-weight: normal;">Powered by cookie-script.com</a><div id="cookiescript_pixel" style="width: 1px; height: 1px; float: left;"></div></div></div>");
   }
   else{
-    document.write("no");
+    document.write("yes");
   }
   document.cookie = "privacy=yes; expires= Thu, 21 Aug 2020 20:00:00 UTC; "
 
