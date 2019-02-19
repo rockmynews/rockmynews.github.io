@@ -6,7 +6,8 @@ if (document.cookie.indexOf('agree') != 0 ) {
     document.write("yes");
   }
     function cAgree(){
-  document.cookie = "agree=yes; expires= Thu, 21 Aug 2020 20:00:00 UTC; "
+        document.cookie = "agree=yes; expires= Thu, 21 Aug 2020 20:00:00 UTC;"
+        document.getElementById("cookiescript_injected").style.display = "none";
     }
 
 
