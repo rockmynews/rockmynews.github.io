@@ -1,0 +1,112 @@
+	
+<!DOCTYPE html><html lang="en-US"><head><meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head><body>
+
+
+
+
+<style type="text/css">
+	#wr {
+		display: block;
+		position: absolute;
+		top: 33%;
+		left: 40%;
+		clear: both;
+	}
+	audio {
+		display: block;
+		position: absolute;
+		top: 25%;
+		left: 40%;
+		clear: both;
+	}
+</style>
+
+	<audio src="file:///C:/Users/ask/Downloads/DD_1984_08_05_BHAGAWAD_GITA_04_TELUGU1.mp3" controls preload="none" id="someID0"></audio>
+
+<div id="wr">
+
+
+
+
+
+	<button title="Play" id="a3o-btn0" class="btn" onclick="haha()">Play</button>
+	<span id="a3o-ct0" class="time-len"> 0:00 </span><span id="a3o-len0" class="time-duration"> 0:00</span>
+
+
+	<progress id="progress0" max="100" value="0"></progress></div>
+
+</div>
+<script type="text/javascript">
+
+
+document.onkeyup = function(e) {
+  if (e.which == 32) {
+	haha()
+  } 
+};
+
+function haha(){
+	var a3o = document.getElementById("someID0");
+	var btn = document.getElementById("a3o-btn0");
+
+    if (a3o.paused) {
+        a3o.play();
+        btn.innerHTML = "Paus";
+
+    } else {
+        a3o.pause();
+        btn.innerHTML = "Play";
+    }
+};
+
+
+
+
+
+
+				var timer;
+                var percent = 0;
+				var audio = document.getElementById("someID0");
+				var pg = document.getElementById("progress0");
+
+                audio.addEventListener("playing", function(_event) {
+                    pg.style.visibility = 'visible';
+                    var duration = _event.target.duration;
+                    advance(duration, audio);
+                });
+                audio.addEventListener("pause", function(_event) {
+                    clearTimeout(timer);
+                });
+                var advance = function(duration, element) {
+                    var progress = pg;
+                    increment = 10 / duration;
+                    percent = Math.min(increment * element.currentTime * 10, 100);
+                    progress.value = percent;
+                    startTimer(duration, element);
+                }
+                var startTimer = function(duration, element) {
+                    if (percent < 100) {
+                        timer = setTimeout(function() {
+                            advance(duration, element);
+                        }, 100);
+                    }
+                }
+
+
+                //audio.onplaying = function() {
+                pg.addEventListener("click", seek);
+                pg.style.cursor = "pointer";
+
+                function seek(e) {
+                    var percent = e.offsetX / this.offsetWidth;
+                    audio.currentTime = percent * audio.duration;
+                    pg.value = percent / 100;
+                }
+
+           
+
+
+	</script>
+  
+  </body></html>
