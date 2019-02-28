@@ -3,25 +3,10 @@
 </head><body>
 
 
+<!-- <div id="one" style="width: 5em;position: relative;height: 10px; background: #767676"><b class="progress-bar" style="width: 38.6774%;"></b>  </div> -->
 
-
-<style type="text/css">
-	#wr {
-		display: block;
-		position: absolute;
-		top: 33%;
-		left: 40%;
-		clear: both;
-	}
-	audio {
-		display: block;
-		position: absolute;
-		top: 25%;
-		left: 40%;
-		clear: both;
-	}
-</style>
-
+  <input type="range" id="start" name="volume" min="0" max="100" value="0" step="any" >
+	<!-- <audio src="file:///C:/Users/ask/Downloads/DD_1984_08_05_BHAGAWAD_GITA_04_TELUGU1.mp3" controls preload="none" id="someID0"></audio> -->
 	<audio src="http://media.radiosai.org/www/mp3download/radiosai-bhajan-tutor-budha-mahavira-lyrics.mp3" controls preload="none" id="someID0"></audio>
 
 <div id="wr">
@@ -36,7 +21,76 @@
 
 	<progress id="progress0" max="100" value="0"></progress></div>
 
+
 </div>
+
+
+
+<style type="text/css">
+	#wr {
+		display: block;
+		position: absolute;
+		top: 70%;
+		left: 40%;
+		clear: both;
+	}
+	audio {
+		display: block;
+		position: absolute;
+		top: 25%;
+		left: 40%;
+		clear: both;
+	}
+	progress{
+		max-width: 45%;
+	}
+
+
+.progress-bar {
+    background-color: #767676;
+    border-right: 0
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #2C63ae;
+    border-right: 2px solid #fff;
+    }
+
+
+input[type="range"] {
+  /*display: block;*/
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  /*border-radius: 5px;*/
+  margin: 0 auto;
+  outline: 0;
+
+
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  /*border: 2px solid white;*/
+  cursor: pointer;
+  transition: .3s ease-in-out;
+
+}​
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+  }
+
+ 
+ 	
+
+</style>
 <script type="text/javascript">
 
 
@@ -65,48 +119,92 @@ function haha(){
 
 
 
-				var timer;
-                		var percent = 0;
-				var audio = document.getElementById("someID0");
-				var pg = document.getElementById("progress0");
+					var timer;
+					var audio = document.getElementById("someID0");
+					var pg = document.getElementById("progress0");
+					var pd = document.getElementById("percent");
+					var time = document.getElementById("ctime");
+					var st = document.getElementById("start");
 
-                audio.addEventListener("playing", function(_event) {
-                    pg.style.visibility = 'visible';
-                    var duration = _event.target.duration;
-                    advance(duration, audio);
-                });
-//                audio.addEventListener("pause", function(_event) {
-//                    clearTimeout(timer);
- //               });
-                var advance = function(duration, element) {
-                    var progress = pg;
-                    increment = 10 / duration;
-                    percent = Math.min(increment * element.currentTime * 10, 100);
-                    progress.value = percent;
-                    startTimer(duration, element);
-                }
-                var startTimer = function(duration, element) {
-                    if (percent < 100) {
-                        timer = setTimeout(function() {
-                            advance(duration, element);
-                        }, 100);
-                    }
-                }
+                // audio.addEventListener("playing", function(_event) {
+                //     var duration = _event.target.duration;
+                //     advance(duration, audio);
+                // });
+
+                // audio.addEventListener("pause", function(_event) {
+                //     clearTimeout(timer);
+                // });
+                
+                // var advance = function(duration, element) {
+                //     var progress = pg;
+                //     increment = 10 / duration;
+                //     // percent = Math.min(increment * element.currentTime * 10, 100);
+                //     percent = (element.currentTime * 100)/duration ;
+                //     progress.value = percent;
+                //     st.value = percent;
+                //     startTimer(duration, element);
+                // }
+                
+                // var startTimer = function(duration, element) {
+                //     if (percent < 100) {
+                //         timer = setTimeout(function() {
+                //             advance(duration, element);
+                //         }, 1000);
+                //     }
+                // }
 
 
-                //audio.onplaying = function() {
-                pg.addEventListener("click", seek);
-                pg.style.cursor = "pointer";
+                // //audio.onplaying = function() {
+                // pg.addEventListener("click", seek);
+                // pg.style.cursor = "pointer";
 
-                function seek(e) {
+                // function seek(e) {
+                //     var percent = e.offsetX / this.offsetWidth;
+                //     audio.currentTime = percent * audio.duration;
+                //     pg.value = percent / 100;
+                //     pd.innerHTML = percent;
+                // }
+
+
+
+
+
+                // st.addEventListener("click", move);
+                // function move(e) {
+                //     var percent = e.offsetX / this.offsetWidth;
+                //     audio.currentTime = percent * audio.duration;
+                //     st.value = percent * 100;
+                // }
+
+
+/////////////////////////////////
+ 				
+                st.addEventListener("click", move);
+                function move(e) {
                     var percent = e.offsetX / this.offsetWidth;
                     audio.currentTime = percent * audio.duration;
-                    pg.value = percent / 100;
+                    console.log("percent" + percent + " slider: " + st.value + " pg: " +  pg.value);
+
                 }
 
-           
+
+
+ 				audio.ontimeupdate = function() {myFunction()}; 				
+	 			function myFunction() {
+
+                    var progress = pg;
+                    percent = (audio.currentTime * 100)/audio.duration ;
+                    st.value = progress.value = percent;
+                    console.log(percent)
+ 				}
+                
+                
+start.oninput  = function() {
+	console.log("seeking");
+};
 
 
 	</script>
-  
+	<div id="valBox"></div>
+
   </body></html>
