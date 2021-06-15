@@ -12,3 +12,10 @@ else {
 document.write("<h1>YOu are on desktop</h1>");
 }
 </script>
+
+
+<script>
+	function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+</script>
