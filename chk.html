@@ -1,25 +1,14 @@
-<script>
-var ua = navigator.userAgent.toLowerCase();
-var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
-if(isAndroid) {
-	// Do something!
-	// Redirect to Android-site?
-	//window.location = 'http://android.davidwalsh.name';
-    document.write("<h1>YOu are on mobile</h1>");
 
-}
-else {
-document.write("<h1>YOu are on desktop</h1>");
-}
-</script>
 
 <style>
-@media only screen and (min-width: 600px) {
+@media screen and (max-width: 992px) {
   body {
-    display: none;
+    background-color: blue;
   }
 }
+
 </style>	
 
 <body>
-	asdfsdf</body>
+	asdfsdf
+</body>
