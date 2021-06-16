@@ -13,17 +13,13 @@ document.write("<h1>YOu are on desktop</h1>");
 }
 </script>
 
-
-<script>
-var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-
-if (orientation === "landscape-primary") {
-  document.write("That looks good.");
-} else if (orientation === "landscape-secondary") {
-  document.write("Mmmh... the screen is upside down!");
-} else if (orientation === "portrait-secondary" || orientation === "portrait-primary") {
-  document.write("Mmmh... you should rotate your device to landscape");
-} else if (orientation === undefined) {
-  document.write("The orientation API isn't supported in this browser :(");
+<style>
+@media only screen and (min-width: 600px) {
+  body {
+    display: none;
+  }
 }
-</script>
+</style>	
+
+<body>
+	asdfsdf</body>
