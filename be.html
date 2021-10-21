@@ -18,7 +18,21 @@
                 <button class="click" onClick="clicked(telugu)">Telugu Stream</button>
     </div>
 </div>
-<script type="text/javascript">function clicked(a){audio.src=a,audio.play(),one.style.display="none",two.style.display="block"}function btnPause(){audio.pause(),two.style.display="none",one.style.display="block"}function btnPlay(){audio.play(),one.style.display="none",two.style.display="block"}var audio,one,two,bhajans,discourse,ameri,afri,telugu,asia;audio=document.getElementById("player"),one=document.getElementById("one"),two=document.getElementById("two"),bhajans="http://stream.radiosai.org:8000",discourse="http://stream.radiosai.org:8008",ameri="http://stream.radiosai.org:8006",afri="http://stream.radiosai.org:8004",telugu="http://stream.radiosai.org:8020",asia="http://stream.radiosai.org:8002";</script>
+<script type="text/javascript">
+function clicked(a) {
+    audio.src = a, audio.play(), one.style.display = "none", two.style.display = "block"
+}
+
+function btnPause() {
+    audio.pause(), two.style.display = "none", one.style.display = "block"
+}
+
+function btnPlay() {
+    audio.play(), one.style.display = "none", two.style.display = "block"
+}
+var audio, one, two, bhajans, discourse, ameri, afri, telugu, asia;
+audio = document.getElementById("player"), one = document.getElementById("one"), two = document.getElementById("two"), bhajans = "https://stream.sssmediacentre.org:8443/bhajan", discourse = "https://stream.sssmediacentre.org:8443/discourse", ameri = "http://stream.radiosai.org:8006", afri = "http://stream.radiosai.org:8004", telugu = "https://stream.sssmediacentre.org:8443/telugu", asia = "https://stream.sssmediacentre.org:8443/asia";
+</script>
 
 
 
