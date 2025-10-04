@@ -4,8 +4,7 @@
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Name Check</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#cecece;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}#inputContainer{width:100%;max-width:400px;text-align:center}input{width:100%;padding:10px;font-size:16px;margin-bottom:10px}button{width:100%;padding:10px;font-size:16px;background:#007BFF;color:#fff;border:none;cursor:pointer;border-radius:4px}button:hover{background:#0056b3}#messageContainer{position:fixed;top:0;left:0;right:0;background:#007BFF;color:#fff;padding:15px 20px;font-size:20px;z-index:1001;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:4px;min-height:60px;justify-content:center;visibility:hidden}#greeting{margin:0}#slideshowNote{font-size:14px;color:#d0e4ff;margin:0}#slideshowContainer{width:100vw;height:calc(100vh - 60px);margin-top:60px;padding:0;overflow:hidden;display:none;justify-content:center;align-items:center}#slideshowContainer img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;margin:0 auto;object-fit:contain}
-
+*{box-sizing:border-box}body{margin:0;background:#cecece;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}#inputContainer{width:100%;max-width:400px;text-align:center}input{width:100%;padding:10px;font-size:16px;margin-bottom:10px}button{width:100%;padding:10px;font-size:16px;background:#007BFF;color:#fff;border:none;cursor:pointer;border-radius:4px}button:hover{background:#0056b3}#messageContainer{position:fixed;top:0;left:0;right:0;background:#007BFF;color:#fff;padding:15px 20px;font-size:20px;z-index:1001;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:4px;min-height:60px;justify-content:center;visibility:hidden}#greeting{margin:0}#slideshowNote{font-size:14px;color:#d0e4ff;margin:0}#slideshowContainer{width:100vw;height:calc(100vh - 60px);margin-top:60px;padding:0;overflow:hidden;display:none;justify-content:center;align-items:center}#slideshowContainer img{max-width:98%;max-height:100%;width:auto;height:auto;display:block;margin:0 auto 0 auto;object-fit:contain;padding-left:1%;padding-right:1%}
 </style>
 </head>
 <body>
@@ -16,8 +15,7 @@
 </div>
 
 <div id="messageContainer">
-  <p id="greeting"></p>
-  <p id="slideshowNote">Click or swipe on the photo to go to the next one.</p>
+  <p id="slideshowNote">Tap or swipe to change the image.</p>
 </div>
 
 <div id="slideshowContainer">
@@ -72,7 +70,6 @@ function checkName(){
     document.getElementById("inputContainer").style.display="none";
     const msgElem=document.getElementById("messageContainer");
     msgElem.style.visibility="visible";
-    document.getElementById("greeting").textContent="nice try. not that foolish";
     document.getElementById("slideshowNote").style.display="none";
     document.getElementById("slideshowContainer").style.display="none";
     return;
@@ -81,7 +78,6 @@ function checkName(){
     document.getElementById("inputContainer").style.display="none";
     const msgElem=document.getElementById("messageContainer");
     msgElem.style.visibility="visible";
-    document.getElementById("greeting").textContent="you've lied before";
     document.getElementById("slideshowNote").style.display="none";
     document.getElementById("slideshowContainer").style.display="none";
     return;
@@ -90,7 +86,6 @@ function checkName(){
     document.getElementById("inputContainer").style.display="none";
     const msgElem=document.getElementById("messageContainer");
     msgElem.style.visibility="visible";
-    document.getElementById("greeting").textContent="lie. absolute lie. #Banned";
     document.getElementById("slideshowNote").style.display="none";
     document.getElementById("slideshowContainer").style.display="none";
     return;
@@ -99,7 +94,6 @@ function checkName(){
     document.getElementById("inputContainer").style.display="none";
     const msgElem=document.getElementById("messageContainer");
     msgElem.style.visibility="visible";
-    document.getElementById("greeting").textContent="how dare you think you will be allowed here";
     document.getElementById("slideshowNote").style.display="none";
     document.getElementById("slideshowContainer").style.display="none";
     return;
@@ -108,7 +102,6 @@ function checkName(){
     document.getElementById("inputContainer").style.display="none";
     const msgElem=document.getElementById("messageContainer");
     msgElem.style.visibility="visible";
-    document.getElementById("greeting").textContent="Hello, "+matchedName+"!";
     document.getElementById("slideshowNote").style.display="block";
     document.getElementById("slideshowContainer").style.display="flex";
     currentImageIndex=1;
