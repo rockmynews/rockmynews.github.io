@@ -5,67 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Name Check</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-    }
-
-    #inputContainer {
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #message {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 18px;
-      color: #333;
-      padding: 0 10px;
-    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: Arial, sans-serif; background-color: #f9f9f9; }
+    #inputContainer { width: 100%; max-width: 400px; text-align: center; }
+    input { width: 100%; padding: 10px; font-size: 16px; margin-bottom: 10px; }
+    button { width: 100%; padding: 10px; font-size: 16px; background-color: #007BFF; color: white; border: none; cursor: pointer; border-radius: 4px; }
+    button:hover { background-color: #0056b3; }
+    #message { margin-top: 20px; text-align: center; font-size: 18px; color: #333; padding: 0 10px; }
+    #slideshowContainer { display: none; flex-direction: column; align-items: center; margin-top: 20px; }
+    #slideshowImage { max-width: 100%; height: auto; border-radius: 8px; }
+    #nextButton { margin-bottom: 10px; padding: 8px 16px; font-size: 14px; width: auto; }
   </style>
 </head>
 <body>
   <div id="inputContainer">
     <h2>Enter your first name:</h2>
-    <input type="text" id="nameInput" placeholder="First name" />
+    <input type="text" id="nameInput" placeholder="First Name Only" />
     <button onclick="checkName()">Submit</button>
   </div>
 
   <p id="message"></p>
+
+  <div id="slideshowContainer">
+    <button id="nextButton" onclick="showNextImage()">Next</button>
+    <img id="slideshowImage" src="" alt="Slideshow Image" />
+  </div>
 
   <script>
     const encodedNames = ["YWJoYXk=", "YXNoaXRoYQ==", "YXBoaXJh", "Y2hyaXM=", "ZGFtb2Rhcg==", "ZGVlcHRp", "ZGhydXRp", "bWF6aGFy", "bWVlbmFrc2hp", "bXVyYWxp", "bmVpbA==", "bmlzaGFt", "cGFydGg=", "cHJhcnRoYW5h", "YnJpbmRoYQ==", "c2FuanBhbmE=", "c25laGE=", "dGFydW4=", "dHJpc3Rhbg==", "eXVrdGE="];
@@ -73,18 +37,20 @@
     const encodedBanned = "YXNodXRvc2g=";
 
     function decodeBase64(str) {
-      try {
-        return atob(str);
-      } catch (e) {
-        return "";
-      }
+      try { return atob(str); } catch (e) { return ""; }
     }
 
     const allowedNames = encodedNames.map(decodeBase64);
     const specialNames = encodedSpecial.map(decodeBase64);
     const bannedName = decodeBase64(encodedBanned);
 
-    window.onload = () => {};
+    let currentImageIndex = 1;
+    const totalImages = 2;
+
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex % totalImages) + 1;
+      document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`;
+    }
 
     function getCompareLength(name) {
       return 4;
@@ -125,8 +91,7 @@
       const history = JSON.parse(localStorage.getItem("submissionHistory")) || [];
       const puneethUsed = history.some(entry => entry.matchedName === specialNames[0]);
       const bannedUsed = history.some(entry => {
-        return entry.matchedName === bannedName || 
-               (entry.rawInput && entry.rawInput.toLowerCase().substring(0, 4) === bannedName.substring(0, 4));
+        return entry.matchedName === bannedName || (entry.rawInput && entry.rawInput.toLowerCase().substring(0, 4) === bannedName.substring(0, 4));
       });
 
       saveSubmission(rawInput, matchedName, timestamp);
@@ -158,6 +123,9 @@
       if (matches.length === 1) {
         document.getElementById("inputContainer").style.display = "none";
         document.getElementById("message").textContent = "Hello, " + matchedName + "!";
+        document.getElementById("slideshowContainer").style.display = "flex";
+        currentImageIndex = 1;
+        document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`;
         return;
       }
 
@@ -166,11 +134,7 @@
 
     function saveSubmission(rawInput, matchedName, timestamp) {
       const history = JSON.parse(localStorage.getItem("submissionHistory")) || [];
-      history.push({
-        rawInput: rawInput,
-        matchedName: matchedName,
-        timestamp: timestamp
-      });
+      history.push({ rawInput: rawInput, matchedName: matchedName, timestamp: timestamp });
       localStorage.setItem("submissionHistory", JSON.stringify(history));
     }
   </script>
