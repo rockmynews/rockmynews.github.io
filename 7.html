@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Name Check</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#cecece;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}@media (max-width:600px){body{justify-content:flex-start;padding-top:80px;height:auto}}#inputContainer{width:100%;max-width:400px;text-align:center}input{width:100%;padding:10px;font-size:16px;margin-bottom:10px}button{width:100%;padding:10px;font-size:16px;background:#007BFF;color:#fff;border:none;cursor:pointer;border-radius:4px}button:hover{background:#0056b3}#messageContainer{position:fixed;top:0;left:0;right:0;background:#007BFF;color:#fff;padding:15px 20px;font-size:20px;z-index:1001;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:4px;min-height:60px;justify-content:center;visibility:hidden}#greeting{margin:0}#slideshowNote{font-size:14px;color:#ffffff;text-shadow:0 0 3px rgba(0,0,0,0.6);margin:0}#slideshowContainer{width:100vw;height:calc(100vh - 60px);margin-top:60px;padding:0;overflow:hidden;display:none;justify-content:center;align-items:center}#slideshowContainer img{max-width:98%;max-height:100%;width:auto;height:auto;display:block;margin:0 auto 0 auto;object-fit:contain;padding-left:1%;padding-right:1%}
-
-
-
-</style>
+<style>*{box-sizing:border-box}body{margin:0;background:#cecece;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}@media(max-width:600px){body{justify-content:flex-start;padding-top:80px;height:auto}}#inputContainer{width:100%;max-width:400px;text-align:center}input{width:100%;padding:10px;font-size:16px;margin-bottom:10px}button{width:100%;padding:10px;font-size:16px;background:#007BFF;color:#fff;border:none;cursor:pointer;border-radius:4px}button:hover{background:#0056b3}#messageContainer{position:fixed;top:0;left:0;right:0;background:#007BFF;color:#fff;padding:15px 20px;font-size:20px;z-index:1001;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:4px;min-height:60px;justify-content:center;visibility:hidden}#greeting{margin:0}#slideshowNote{font-size:14px;color:#ffffff;text-shadow:0 0 3px rgba(0,0,0,0.6);margin:0}#slideshowContainer{width:100vw;margin-top:6px;padding:0;overflow:hidden;display:none;justify-content:center;align-items:center;height:auto}#slideshowContainer img{max-width:98%;max-height:100%;width:auto;height:auto;display:block;margin:0 auto;object-fit:contain;padding-left:1%;padding-right:1%}</style>
 </head>
 <body>
 <div id="inputContainer">
@@ -132,6 +127,16 @@ function handleSwipeGesture(){
 }
 // Click on image to show next
 document.getElementById("slideshowImage").addEventListener("click",showNextImage);
+
+// Dynamic slideshow container height fix
+function adjustSlideshowHeight() {
+  const headerHeight = document.getElementById('messageContainer').offsetHeight;
+  const vh = window.innerHeight;
+  document.getElementById('slideshowContainer').style.height = (vh - headerHeight) + 'px';
+}
+window.addEventListener('resize', adjustSlideshowHeight);
+window.addEventListener('orientationchange', adjustSlideshowHeight);
+adjustSlideshowHeight();
 </script>
 </body>
 </html>
