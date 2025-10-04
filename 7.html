@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Name Check</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#cecece;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}@media(max-width:600px){body{justify-content:flex-start;padding-top:80px;height:auto}}#inputContainer{width:100%;max-width:400px;text-align:center}input{width:100%;padding:10px;font-size:16px;margin-bottom:10px}button{width:100%;padding:10px;font-size:16px;background:#007BFF;color:#fff;border:none;cursor:pointer;border-radius:4px}button:hover{background:#0056b3}#messageContainer{position:fixed;top:0;left:0;right:0;background:#007BFF;color:#fff;padding:15px 20px;font-size:20px;z-index:1001;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:4px;min-height:60px;justify-content:center;visibility:hidden}#greeting{margin:0}#slideshowNote{font-size:14px;color:#ffffff;text-shadow:0 0 3px rgba(0,0,0,0.6);margin:0}#slideshowContainer{width:100vw;margin-top:6px;padding:0;overflow:hidden;display:none;justify-content:center;align-items:center;height:auto}#slideshowContainer img{max-width:98%;max-height:100%;width:auto;height:auto;display:block;margin:0 auto;object-fit:contain;padding-left:1%;padding-right:1%}</style>
+<style>*{box-sizing:border-box}body{margin:0;background:#cecece;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh}@media(max-width:600px){body{justify-content:flex-start;padding-top:80px;height:auto}}#inputContainer{width:100%;max-width:400px;text-align:center}input{width:100%;padding:10px;font-size:16px;margin-bottom:10px}button{width:100%;padding:10px;font-size:16px;background:#007BFF;color:#fff;border:none;cursor:pointer;border-radius:4px}button:hover{background:#0056b3}#messageContainer{position:fixed;top:0;left:0;right:0;background:#007BFF;color:#fff;padding:15px 20px;font-size:20px;z-index:1001;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:4px;min-height:60px;justify-content:center;visibility:hidden}#greeting{margin:0}#slideshowNote{font-size:14px;color:#ffffff;text-shadow:0 0 3px rgba(0,0,0,0.6);margin:0}#slideshowContainer{width:100vw;margin-top:0;padding:0;overflow:hidden;display:none;flex-direction:column;justify-content:center;align-items:center;height:auto}#slideshowContainer img{max-width:98%;max-height:100%;width:auto;height:auto;display:block;margin:0 auto;object-fit:contain;padding-left:1%;padding-right:1%}#imageCaption{color:#fff;text-align:center;margin-top:8px;font-size:18px;font-weight:600;padding:8px 16px;background:rgba(0,0,0,0.6);border-radius:6px;max-width:90%;margin-left:auto;margin-right:auto;box-shadow:0 0 10px rgba(0,0,0,0.7);}</style>
 </head>
 <body>
 <div id="inputContainer">
@@ -19,6 +19,7 @@
 
 <div id="slideshowContainer">
   <img id="slideshowImage" src="" alt="Slideshow Image" />
+  <p id="imageCaption"></p>
 </div>
 
 <script>
@@ -30,11 +31,37 @@ const allowedNames = encodedNames.map(decodeBase64);
 const specialNames = encodedSpecial.map(decodeBase64);
 const bannedName = decodeBase64(encodedBanned);
 let currentImageIndex = 1;
-const totalImages = 4; // updated to 3 images
-function showNextImage(){currentImageIndex = (currentImageIndex % totalImages) + 1; document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`}
-function showPreviousImage(){currentImageIndex = (currentImageIndex - 2 + totalImages) % totalImages + 1; document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`}
+const totalImages = 11; // total slideshow images
+
+// Example captions for each image; you can customize these
+const imageCaptions = [
+  "Caption for image 1",
+  "Caption for image 2",
+  "Caption for image 3",
+  "Caption for image 4"
+];
+
+function showNextImage(){
+  currentImageIndex = (currentImageIndex % totalImages) + 1; 
+  updateSlideshow();
+}
+function showPreviousImage(){
+  currentImageIndex = (currentImageIndex - 2 + totalImages) % totalImages + 1; 
+  updateSlideshow();
+}
+function updateSlideshow(){
+  const img = document.getElementById("slideshowImage");
+  const caption = document.getElementById("imageCaption");
+  img.src = `v/${currentImageIndex}.jpg`;
+  caption.textContent = imageCaptions[currentImageIndex - 1] || "";
+}
+
 function getCompareLength(name){return 4}
-function saveSubmission(rawInput, matchedName, timestamp){const history=JSON.parse(localStorage.getItem("submissionHistory"))||[];history.push({rawInput:rawInput,matchedName:matchedName,timestamp:timestamp});localStorage.setItem("submissionHistory",JSON.stringify(history))}
+function saveSubmission(rawInput, matchedName, timestamp){
+  const history=JSON.parse(localStorage.getItem("submissionHistory"))||[];
+  history.push({rawInput:rawInput,matchedName:matchedName,timestamp:timestamp});
+  localStorage.setItem("submissionHistory",JSON.stringify(history));
+}
 function checkName(){
   const rawInput=document.getElementById("nameInput").value;
   const input=rawInput.trim().toLowerCase();
@@ -109,11 +136,13 @@ function checkName(){
     document.getElementById("slideshowNote").style.display="block";
     document.getElementById("slideshowContainer").style.display="flex";
     currentImageIndex=1;
-    document.getElementById("slideshowImage").src=`v/${currentImageIndex}.jpg`;
+    updateSlideshow();
+    adjustSlideshowHeight();
     return;
   }
   document.body.innerHTML="";
 }
+
 // Swipe support
 let touchStartX=0,touchEndX=0;
 const swipeThreshold=50;
@@ -128,15 +157,16 @@ function handleSwipeGesture(){
 // Click on image to show next
 document.getElementById("slideshowImage").addEventListener("click",showNextImage);
 
-// Dynamic slideshow container height fix
+// Dynamic slideshow container height & margin fix
 function adjustSlideshowHeight() {
   const headerHeight = document.getElementById('messageContainer').offsetHeight;
   const vh = window.innerHeight;
-  document.getElementById('slideshowContainer').style.height = (vh - headerHeight) + 'px';
+  const slideshow = document.getElementById('slideshowContainer');
+  slideshow.style.height = (vh - headerHeight) + 'px';
+  slideshow.style.marginTop = headerHeight + 'px';
 }
 window.addEventListener('resize', adjustSlideshowHeight);
 window.addEventListener('orientationchange', adjustSlideshowHeight);
-adjustSlideshowHeight();
 </script>
 </body>
 </html>
