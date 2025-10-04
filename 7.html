@@ -26,6 +26,7 @@
 
   <p id="message"></p>
 
+  <!-- Slideshow Section -->
   <div id="slideshowContainer">
     <button id="nextButton" onclick="showNextImage()">Next</button>
     <img id="slideshowImage" src="" alt="Slideshow Image" />
@@ -49,6 +50,11 @@
 
     function showNextImage() {
       currentImageIndex = (currentImageIndex % totalImages) + 1;
+      document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`;
+    }
+
+    function showPreviousImage() {
+      currentImageIndex = (currentImageIndex - 2 + totalImages) % totalImages + 1;
       document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`;
     }
 
@@ -136,6 +142,33 @@
       const history = JSON.parse(localStorage.getItem("submissionHistory")) || [];
       history.push({ rawInput: rawInput, matchedName: matchedName, timestamp: timestamp });
       localStorage.setItem("submissionHistory", JSON.stringify(history));
+    }
+
+    // Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50; // Minimum distance to trigger swipe
+
+    const slideshowContainer = document.getElementById("slideshowContainer");
+
+    slideshowContainer.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    slideshowContainer.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipeGesture();
+    });
+
+    function handleSwipeGesture() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) < swipeThreshold) return;
+
+      if (swipeDistance < 0) {
+        showNextImage();
+      } else {
+        showPreviousImage();
+      }
     }
   </script>
 </body>
