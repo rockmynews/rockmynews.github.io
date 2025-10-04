@@ -30,7 +30,7 @@ const allowedNames = encodedNames.map(decodeBase64);
 const specialNames = encodedSpecial.map(decodeBase64);
 const bannedName = decodeBase64(encodedBanned);
 let currentImageIndex = 1;
-const totalImages = 3; // updated to 3 images
+const totalImages = 4; // updated to 3 images
 function showNextImage(){currentImageIndex = (currentImageIndex % totalImages) + 1; document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`}
 function showPreviousImage(){currentImageIndex = (currentImageIndex - 2 + totalImages) % totalImages + 1; document.getElementById("slideshowImage").src = `v/${currentImageIndex}.jpg`}
 function getCompareLength(name){return 4}
