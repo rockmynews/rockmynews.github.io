@@ -2,13 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Name Check —</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Name Check</title>
   <style>
-    body{margin:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:Arial,sans-serif}
-    #inputContainer{text-align:center}
-    input{padding:8px;font-size:16px}
-    button{padding:8px 12px;font-size:16px;margin-left:10px}
-    #message{margin-top:20px;text-align:center;font-size:18px}
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    #inputContainer {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #message {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+      padding: 0 10px;
+    }
   </style>
 </head>
 <body>
